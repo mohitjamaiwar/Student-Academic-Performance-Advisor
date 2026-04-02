@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | AI-TAE Advisor{% endblock %}
+
+{% block content %}
+<section class="panel panel-soft hero">
+    <div class="panel-head">
+        <div>
+            <h1>Student Academic Performance Advisor</h1>
+            <p class="subtitle">A clean explainable AI dashboard to evaluate students, detect weak areas, and generate actionable guidance.</p>
+        </div>
+        <div class="chip">Symbolic AI</div>
+    </div>
+</section>
+
+<section class="task-grid">
+    <a class="task-card" href="/add-student">
+        <h2>Add Student</h2>
+        <p>Create and save individual student records.</p>
+    </a>
+    <a class="task-card" href="/analyze">
+        <h2>Analyze</h2>
+        <p>Run rule-based analysis with charts and recommendations.</p>
+    </a>
+    <a class="task-card" href="/saved-students">
+        <h2>Students List</h2>
+        <p>View all saved students and inspect details.</p>
+    </a>
+    <a class="task-card" href="/class-analysis">
+        <h2>Class Analysis</h2>
+        <p>Analyze complete class performance with charts and heat maps.</p>
+    </a>
+</section>
+{% endblock %}

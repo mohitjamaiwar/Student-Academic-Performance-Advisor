@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}Analyze Student | AI-TAE Advisor{% endblock %}
+
+{% block content %}
+<section class="panel panel-soft analytics-board">
+    <div class="panel-head">
+        <div>
+            <h1>Analytics</h1>
+            <p class="subtitle">Run explainable analysis on student metrics and marks.</p>
+        </div>
+        <div class="chip">Academic Dashboard</div>
+    </div>
+
+    <div class="kpi-grid">
+        <article class="kpi-card tone-blue">
+            <p class="kpi-label">Average Mark</p>
+            <p class="kpi-value" id="kpi-average-mark">-</p>
+        </article>
+        <article class="kpi-card tone-mint">
+            <p class="kpi-label">Weak Subjects</p>
+            <p class="kpi-value" id="kpi-weak-count">-</p>
+        </article>
+        <article class="kpi-card tone-rose">
+            <p class="kpi-label">Attendance</p>
+            <p class="kpi-value" id="kpi-attendance">-</p>
+        </article>
+        <article class="kpi-card tone-sky">
+            <p class="kpi-label">Study Hours</p>
+            <p class="kpi-value" id="kpi-study-hours">-</p>
+        </article>
+    </div>
+
+    <div class="lookup-box compact-block">
+        <h2>Student Lookup</h2>
+        <div class="grid two-col">
+            <label>Roll Number
+                <input type="number" id="roll_number" min="1" step="1" placeholder="Enter roll number (ID)">
+            </label>
+            <label>Student Name
+                <select id="student-selector">
+                    <option value="">Select saved student</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+</section>
+
+<section class="panel panel-soft compact-block">
+    <div class="panel-head">
+        <h2>Input Profile</h2>
+        <div class="mini-tabs">
+            <span class="mini-tab active">Current</span>
+            <span class="mini-tab">Comparison</span>
+        </div>
+    </div>
+
+    <form id="student-form">
+        <div class="grid two-col">
+            <label>Name
+                <input type="text" id="name" placeholder="Student name">
+            </label>
+            <label>Attendance (%)
+                <input type="number" id="attendance" min="0" max="100" step="0.1" required>
+            </label>
+            <label>Study Hours (per day)
+                <input type="number" id="study_hours" min="0" max="24" step="0.1" required>
+            </label>
+            <label>Assignment Completion (%)
+                <input type="number" id="assignment_completion" min="0" max="100" step="0.1" required>
+            </label>
+        </div>
+
+        <h2>Subject Marks</h2>
+        <div class="grid three-col">
+            <label>Math
+                <input type="number" id="mark_math" min="0" max="100" step="0.1" required>
+            </label>
+            <label>Physics
+                <input type="number" id="mark_physics" min="0" max="100" step="0.1" required>
+            </label>
+            <label>Programming
+                <input type="number" id="mark_programming" min="0" max="100" step="0.1" required>
+            </label>
+        </div>
+
+        <label>Difficulty Areas (comma separated)
+            <input type="text" id="difficulty_areas" placeholder="e.g., Algebra, Data Structures">
+        </label>
+
+        <div class="actions">
+            <button type="button" id="load-sample">Load Sample</button>
+            <button type="submit">Analyze</button>
+        </div>
+    </form>
+
+    <p id="status" class="status"></p>
+</section>
+
+<section class="panel panel-soft" id="results-panel">
+    <div class="panel-head">
+        <h2>Analysis Results</h2>
+        <div class="chip subtle">Explainable Output</div>
+    </div>
+    <div class="insight-grid">
+        <div id="weak-subjects" class="result-box"></div>
+        <div id="study-recommendations" class="result-box"></div>
+        <div id="time-management" class="result-box"></div>
+        <div id="learning-resources" class="result-box"></div>
+    </div>
+</section>
+
+<section class="panel panel-soft charts">
+    <div class="panel-head">
+        <h2>Performance Charts</h2>
+        <div class="mini-tabs">
+            <span class="mini-tab">Week</span>
+            <span class="mini-tab">Month</span>
+            <span class="mini-tab active">Year</span>
+        </div>
+    </div>
+    <div class="chart-grid">
+        <div class="chart-card">
+            <h3>Subject Distribution</h3>
+            <canvas id="subject-chart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>Metric Overview</h3>
+            <canvas id="metrics-chart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>Overall Profile</h3>
+            <canvas id="radar-chart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>Contribution Mix</h3>
+            <canvas id="pie-chart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>Trend Line</h3>
+            <canvas id="line-chart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>Correlation View</h3>
+            <canvas id="scatter-chart"></canvas>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/analyze.js') }}"></script>
+{% endblock %}

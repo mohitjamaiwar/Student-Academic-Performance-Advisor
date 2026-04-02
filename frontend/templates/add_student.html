@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Add Student | AI-TAE Advisor{% endblock %}
+
+{% block content %}
+<section class="panel panel-soft">
+    <div class="panel-head">
+        <div>
+            <h1>Add Student</h1>
+            <p class="subtitle">Save a student profile to the database.</p>
+        </div>
+    </div>
+
+    <form id="student-form">
+        <div class="grid two-col">
+            <label>Name
+                <input type="text" id="name" placeholder="Student name" required>
+            </label>
+            <label>Attendance (%)
+                <input type="number" id="attendance" min="0" max="100" step="0.1" required>
+            </label>
+            <label>Study Hours (per day)
+                <input type="number" id="study_hours" min="0" max="24" step="0.1" required>
+            </label>
+            <label>Assignment Completion (%)
+                <input type="number" id="assignment_completion" min="0" max="100" step="0.1" required>
+            </label>
+        </div>
+
+        <h2>Subject Marks</h2>
+        <div class="grid three-col">
+            <label>Math
+                <input type="number" id="mark_math" min="0" max="100" step="0.1" required>
+            </label>
+            <label>Physics
+                <input type="number" id="mark_physics" min="0" max="100" step="0.1" required>
+            </label>
+            <label>Programming
+                <input type="number" id="mark_programming" min="0" max="100" step="0.1" required>
+            </label>
+        </div>
+
+        <label>Difficulty Areas (comma separated)
+            <input type="text" id="difficulty_areas" placeholder="e.g., Math basics, Loops, Time management">
+        </label>
+
+        <div class="actions">
+            <button type="button" id="load-sample">Load Sample</button>
+            <button type="submit">Save Student</button>
+        </div>
+    </form>
+
+    <p id="status" class="status"></p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/add_student.js') }}"></script>
+{% endblock %}

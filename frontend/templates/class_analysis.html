@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Overall Class Analysis | AI-TAE Advisor{% endblock %}
+
+{% block content %}
+<section class="panel panel-soft analytics-board">
+    <div class="panel-head">
+        <div>
+            <h1>Overall Class Analysis</h1>
+            <p class="subtitle">Analyze complete class performance across all saved students.</p>
+        </div>
+        <div class="actions compact-actions">
+            <button type="button" id="refresh-class-analysis">Refresh</button>
+        </div>
+    </div>
+
+    <div class="kpi-grid">
+        <article class="kpi-card tone-blue">
+            <p class="kpi-label">Total Students</p>
+            <p class="kpi-value" id="kpi-total-students">-</p>
+        </article>
+        <article class="kpi-card tone-mint">
+            <p class="kpi-label">Class Avg Mark</p>
+            <p class="kpi-value" id="kpi-class-avg-mark">-</p>
+        </article>
+        <article class="kpi-card tone-rose">
+            <p class="kpi-label">Avg Attendance</p>
+            <p class="kpi-value" id="kpi-class-attendance">-</p>
+        </article>
+        <article class="kpi-card tone-sky">
+            <p class="kpi-label">Avg Study Hours</p>
+            <p class="kpi-value" id="kpi-class-study-hours">-</p>
+        </article>
+    </div>
+
+    <p id="status" class="status"></p>
+</section>
+
+<section class="panel panel-soft charts">
+    <div class="panel-head">
+        <h2>Class-Level Charts</h2>
+    </div>
+    <div class="chart-grid class-chart-grid">
+        <div class="chart-card">
+            <h3>Subject Average Marks</h3>
+            <canvas id="class-subject-bar-chart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>Grade Distribution</h3>
+            <canvas id="class-grade-pie-chart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>Class Radar Overview</h3>
+            <canvas id="class-radar-chart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h3>Average Academic Metrics</h3>
+            <canvas id="class-metric-bar-chart"></canvas>
+        </div>
+        <div class="chart-card chart-span-full">
+            <h3>Student Average Trend</h3>
+            <canvas id="class-line-chart"></canvas>
+        </div>
+        
+    </div>
+</section>
+
+<section class="panel panel-soft">
+    <div class="panel-head">
+        <h2>Heat Map: Students vs Subjects</h2>
+    </div>
+    <div class="table-wrap">
+        <table class="heatmap-table" id="heatmap-table">
+            <thead id="heatmap-head"></thead>
+            <tbody id="heatmap-body"></tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/class_analysis.js') }}"></script>
+{% endblock %}

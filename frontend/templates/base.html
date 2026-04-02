@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Student Academic Performance Advisor{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="/">Student Academic Performance Advisor</a>
+            <nav class="main-nav">
+                <a href="/">Home</a>
+                <a href="/add-student">Add Student</a>
+                <a href="/analyze">Analyze</a>
+                <a href="/saved-students">Students List</a>
+                <a href="/class-analysis">Class Analysis</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>Designed and Developed by ~Mohit Jamaiwar</p>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+    <script>
+        const navLinks = document.querySelectorAll(".main-nav a");
+        const currentPath = window.location.pathname;
+
+        navLinks.forEach((link) => {
+            const linkPath = new URL(link.href).pathname;
+            if (linkPath === currentPath) {
+                link.setAttribute("aria-current", "page");
+            }
+        });
+    </script>
+</body>
+</html>

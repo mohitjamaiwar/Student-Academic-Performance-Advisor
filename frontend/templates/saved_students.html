@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Saved Students | AI-TAE Advisor{% endblock %}
+
+{% block content %}
+<section class="panel panel-soft">
+    <div class="panel-head">
+        <div>
+            <h1>Saved Students</h1>
+            <p class="subtitle">Browse all students saved in the database.</p>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button type="button" id="refresh-students">Refresh List</button>
+    </div>
+
+    <div class="table-wrap">
+        <table class="student-table">
+            <thead>
+                <tr>
+                    <th>Roll No.</th>
+                    <th>Name</th>
+                    <th>Attendance</th>
+                    <th>Study Hours</th>
+                    <th>Assignment %</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="student-table-body">
+                <tr>
+                    <td colspan="6">Loading students...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p id="status" class="status"></p>
+</section>
+
+<section class="panel panel-soft">
+    <div class="panel-head">
+        <h2>Student Details</h2>
+    </div>
+    <div id="student-detail" class="result-box">
+        <p>Select a student from the list to view full details.</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/saved_students.js') }}"></script>
+{% endblock %}

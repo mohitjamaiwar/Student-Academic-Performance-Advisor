@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found | AI-TAE Advisor{% endblock %}
+
+{% block content %}
+<section class="panel not-found-wrap">
+    <p class="error-code">404</p>
+    <h1>Page Not Found</h1>
+    <p class="subtitle">The page you requested does not exist. Use the dashboard to continue.</p>
+    <div class="actions">
+        <a class="btn-link" href="/">Back to Dashboard</a>
+        <a class="btn-link secondary" href="/analyze">Go to Analyze</a>
+    </div>
+</section>
+{% endblock %}
