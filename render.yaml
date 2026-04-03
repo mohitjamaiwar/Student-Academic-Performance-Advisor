@@ -4,5 +4,3 @@
     env: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn backend.app:app"
-    envVars:
-      WORKING_DIR: "./backend"
