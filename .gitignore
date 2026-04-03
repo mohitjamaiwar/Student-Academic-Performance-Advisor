@@ -68,3 +68,12 @@ yarn-error.log
 # OS generated files
 Thumbs.db
 Desktop.ini
+.vercel
+.env*.local
+
+# Added for Render deployment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
