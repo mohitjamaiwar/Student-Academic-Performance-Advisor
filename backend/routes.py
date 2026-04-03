@@ -6,6 +6,13 @@ from db import get_student, insert_student, list_students
 from knowledge_base.frames import StudentFrame
 from knowledge_base.semantic_network import build_default_network
 from reasoning.advice_generator import generate_advice
+from supabase import create_client, Client
+import os
+
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 api_bp = Blueprint("api", __name__)
 semantic_network = build_default_network()
@@ -270,11 +277,9 @@ def analyze():
 @app.route('/test-db-connection', methods=['GET'])
 def test_db_connection():
     try:
-        # Example query to test database connection
-        result = db.session.execute('SELECT 1').fetchone()
-        if result:
-            return jsonify({"success": True, "message": "Database connection successful!"}), 200
-        else:
-            return jsonify({"success": False, "message": "Database connection failed!"}), 500
+        data = supabase.table("your_table_name").select("*").limit(1).execute()
+        if data.error:
+            return jsonify({"success": False, "message": data.error.message}), 500
+        return jsonify({"success": True, "message": "Supabase API connection successful!", "data": data.data}), 200
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
