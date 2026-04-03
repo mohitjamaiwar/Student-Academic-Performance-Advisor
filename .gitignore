@@ -41,7 +41,6 @@ venv.bak/
 .DS_Store
 
 # Database
-*.db
 *.sqlite
 *.sqlite3
 
