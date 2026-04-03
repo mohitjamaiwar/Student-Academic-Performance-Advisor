@@ -265,3 +265,16 @@ def analyze():
     student_frame = StudentFrame.from_payload(payload)
     analysis = generate_advice(student_frame, semantic_network)
     return jsonify(analysis)
+
+
+@app.route('/test-db-connection', methods=['GET'])
+def test_db_connection():
+    try:
+        # Example query to test database connection
+        result = db.session.execute('SELECT 1').fetchone()
+        if result:
+            return jsonify({"success": True, "message": "Database connection successful!"}), 200
+        else:
+            return jsonify({"success": False, "message": "Database connection failed!"}), 500
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
