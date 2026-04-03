@@ -1,8 +1,8 @@
-services:
+.services:
   - type: web
     name: AI-TAE
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app"
+    startCommand: "gunicorn backend.app:app"
     envVars:
       WORKING_DIR: "./backend"
